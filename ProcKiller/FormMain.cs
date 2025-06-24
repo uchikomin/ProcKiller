@@ -28,6 +28,15 @@ namespace ProcKiller
             listViewProcess.ListViewItemSorter = sorter;
         }
 
+        /// <summary>
+        /// メッセージを表示する
+        /// </summary>
+        /// <param name="msg">メッセージ</param>
+        private void ShowMessage(string msg)
+        {
+            MessageBox.Show(this, msg);
+        }
+
         // 参照
         // https://usagi.hatenablog.jp/entry/2018/12/02/182819
 
@@ -109,7 +118,7 @@ namespace ProcKiller
             // キーワードが指定されていない場合
             if (keyword == string.Empty)
             {
-                MessageBox.Show("キーワードを入力してください");
+                ShowMessage("キーワードを入力してください");
                 return;
             }
 
@@ -165,7 +174,7 @@ namespace ProcKiller
             if (textBoxKeyword.Text != formConfirm.ConfirmText)
             {
                 // 
-                MessageBox.Show("キーワードが一致しません");
+                ShowMessage("キーワードが一致しません");
                 // 処理を中止
                 return;
             }
@@ -196,7 +205,7 @@ namespace ProcKiller
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("プロセスの停止に失敗しました" + ex.Message);
+                    ShowMessage("プロセスの停止に失敗しました" + ex.Message);
                     // 
                     break;
                 }
