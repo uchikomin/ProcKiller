@@ -41,6 +41,7 @@ namespace ProcKiller
             this.columnHeaderProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderImageName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonKill = new System.Windows.Forms.Button();
+            this.buttonRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -100,6 +101,8 @@ namespace ProcKiller
             this.listViewProcess.UseCompatibleStateImageBehavior = false;
             this.listViewProcess.View = System.Windows.Forms.View.Details;
             this.listViewProcess.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcess_ColumnClick);
+            this.listViewProcess.SelectedIndexChanged += new System.EventHandler(this.listViewProcess_SelectedIndexChanged);
+            this.listViewProcess.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listViewProcess_KeyDown);
             // 
             // columnHeaderPid
             // 
@@ -129,11 +132,23 @@ namespace ProcKiller
             this.buttonKill.UseVisualStyleBackColor = true;
             this.buttonKill.Click += new System.EventHandler(this.buttonKill_Click);
             // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonRemove.Location = new System.Drawing.Point(575, 18);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemove.TabIndex = 6;
+            this.buttonRemove.Text = "除外";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 348);
+            this.Controls.Add(this.buttonRemove);
             this.Controls.Add(this.buttonKill);
             this.Controls.Add(this.listViewProcess);
             this.Controls.Add(this.label2);
@@ -162,5 +177,6 @@ namespace ProcKiller
         private ColumnHeader columnHeaderProcessName;
         private ColumnHeader columnHeaderImageName;
         private Button buttonKill;
+        private Button buttonRemove;
     }
 }

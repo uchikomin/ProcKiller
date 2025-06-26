@@ -26,6 +26,9 @@ namespace ProcKiller
         {
             // ソーターの設定
             listViewProcess.ListViewItemSorter = sorter;
+
+            // 除外ボタンを無効化
+            buttonRemove.Enabled = false;
         }
 
         /// <summary>
@@ -110,6 +113,9 @@ namespace ProcKiller
             buttonKill.Enabled = listViewProcess.Items.Count > 0;
         }
 
+        /// <summary>
+        /// プロセスを検索する
+        /// </summary>
         private void SearchProcess()
         {
             // キーワード
@@ -126,12 +132,22 @@ namespace ProcKiller
             UpdateListViewProcess(keyword);
         }
 
+        /// <summary>
+        /// 検索ボタンを押したときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonSearch_Click(object sender, EventArgs e)
         {
             // プロセスを検索
             SearchProcess();
         }
 
+        /// <summary>
+        /// プロセス一覧のカラムをクリックしたときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listViewProcess_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
@@ -158,6 +174,11 @@ namespace ProcKiller
             this.listViewProcess.Sort();
         }
 
+        /// <summary>
+        /// プロセス停止ボタンを押したときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonKill_Click(object sender, EventArgs e)
         {
             // 確認フォームを生成
@@ -213,6 +234,62 @@ namespace ProcKiller
 
             // プロセスを再検索
             SearchProcess();
+        }
+
+        /// <summary>
+        /// 選択が変更されたときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listViewProcess_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // 一つでも選択されていれば、除外ボタンを押せるようにする
+            buttonRemove.Enabled = listViewProcess.SelectedIndices.Count > 0;
+        }
+
+        /// <summary>
+        /// 選択している項目を削除する
+        /// </summary>
+        private void RemoveSelectedItems()
+        {
+            // 描画停止
+            listViewProcess.BeginUpdate();
+
+            // 選択している項目に対して繰り返し
+            foreach (ListViewItem item in listViewProcess.SelectedItems)
+            {
+                // リストから削除
+                listViewProcess.Items.Remove(item);
+            }
+
+            // 描画再開
+            listViewProcess.EndUpdate();
+        }
+
+        /// <summary>
+        /// 除外ボタンを押したときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            // 選択している項目を削除する
+            RemoveSelectedItems();
+        }
+
+        /// <summary>
+        /// キーを押したときの処理
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listViewProcess_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 除外ボタンが押下可能で、DELETEキーを押した場合
+            if (buttonRemove.Enabled && e.KeyCode == Keys.Delete)
+            {
+                // 選択している項目を削除する
+                RemoveSelectedItems();
+            }
         }
     }
 }
