@@ -226,7 +226,7 @@ namespace ProcKiller
                 }
                 catch (Exception ex)
                 {
-                    ShowMessage("プロセスの停止に失敗しました" + ex.Message);
+                    ShowMessage("プロセスの停止に失敗しました: " + ex.Message);
                     // 
                     break;
                 }
