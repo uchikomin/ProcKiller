@@ -209,20 +209,14 @@ namespace ProcKiller
                 // プロセスIDを取得
                 int pid = int.Parse(item.Text);
 
-                // プロセス情報を取得
-                Process proc = Process.GetProcessById(pid);
-
-                // プロセスが取得できなければ
-                if (proc == null)
-                {
-                    // スキップ
-                    continue;
-                }
-
                 try
                 {
-                    // プロセスを停止
-                    proc.Kill();
+                    // プロセス情報を取得
+                    using (Process proc = Process.GetProcessById(pid))
+                    {
+                        // プロセスを停止
+                        proc.Kill();
+                    }
                 }
                 catch (Exception ex)
                 {

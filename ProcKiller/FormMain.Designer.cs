@@ -39,7 +39,7 @@ namespace ProcKiller
             this.listViewProcess = new System.Windows.Forms.ListView();
             this.columnHeaderPid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderProcessName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderImageName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderImagePathName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonKill = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -55,11 +55,12 @@ namespace ProcKiller
             // 
             // textBoxKeyword
             // 
+            this.textBoxKeyword.AcceptsReturn = true;
             this.textBoxKeyword.Location = new System.Drawing.Point(69, 5);
             this.textBoxKeyword.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxKeyword.Name = "textBoxKeyword";
             this.textBoxKeyword.Size = new System.Drawing.Size(174, 19);
-            this.textBoxKeyword.TabIndex = 1;
+            this.textBoxKeyword.TabIndex = 0;
             // 
             // buttonSearch
             // 
@@ -67,7 +68,7 @@ namespace ProcKiller
             this.buttonSearch.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonSearch.Name = "buttonSearch";
             this.buttonSearch.Size = new System.Drawing.Size(64, 20);
-            this.buttonSearch.TabIndex = 2;
+            this.buttonSearch.TabIndex = 1;
             this.buttonSearch.Text = "検索";
             this.buttonSearch.UseVisualStyleBackColor = true;
             this.buttonSearch.Click += new System.EventHandler(this.buttonSearch_Click);
@@ -89,7 +90,7 @@ namespace ProcKiller
             this.listViewProcess.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderPid,
             this.columnHeaderProcessName,
-            this.columnHeaderImageName});
+            this.columnHeaderImagePathName});
             this.listViewProcess.FullRowSelect = true;
             this.listViewProcess.HideSelection = false;
             this.listViewProcess.Location = new System.Drawing.Point(10, 46);
@@ -97,7 +98,7 @@ namespace ProcKiller
             this.listViewProcess.Name = "listViewProcess";
             this.listViewProcess.Size = new System.Drawing.Size(640, 259);
             this.listViewProcess.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.listViewProcess.TabIndex = 4;
+            this.listViewProcess.TabIndex = 2;
             this.listViewProcess.UseCompatibleStateImageBehavior = false;
             this.listViewProcess.View = System.Windows.Forms.View.Details;
             this.listViewProcess.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcess_ColumnClick);
@@ -114,10 +115,10 @@ namespace ProcKiller
             this.columnHeaderProcessName.Text = "プロセス名";
             this.columnHeaderProcessName.Width = 160;
             // 
-            // columnHeaderImageName
+            // columnHeaderImagePathName
             // 
-            this.columnHeaderImageName.Text = "イメージ名";
-            this.columnHeaderImageName.Width = 360;
+            this.columnHeaderImagePathName.Text = "イメージパス名";
+            this.columnHeaderImagePathName.Width = 360;
             // 
             // buttonKill
             // 
@@ -127,7 +128,7 @@ namespace ProcKiller
             this.buttonKill.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonKill.Name = "buttonKill";
             this.buttonKill.Size = new System.Drawing.Size(94, 28);
-            this.buttonKill.TabIndex = 5;
+            this.buttonKill.TabIndex = 4;
             this.buttonKill.Text = "プロセス停止";
             this.buttonKill.UseVisualStyleBackColor = true;
             this.buttonKill.Click += new System.EventHandler(this.buttonKill_Click);
@@ -138,13 +139,14 @@ namespace ProcKiller
             this.buttonRemove.Location = new System.Drawing.Point(575, 18);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(75, 23);
-            this.buttonRemove.TabIndex = 6;
+            this.buttonRemove.TabIndex = 3;
             this.buttonRemove.Text = "除外";
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
             // FormMain
             // 
+            this.AcceptButton = this.buttonSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(660, 348);
@@ -175,7 +177,7 @@ namespace ProcKiller
         private ListView listViewProcess;
         private ColumnHeader columnHeaderPid;
         private ColumnHeader columnHeaderProcessName;
-        private ColumnHeader columnHeaderImageName;
+        private ColumnHeader columnHeaderImagePathName;
         private Button buttonKill;
         private Button buttonRemove;
     }
